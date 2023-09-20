@@ -4,7 +4,7 @@
     "slug": "AppSimulador",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/binario.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -19,12 +19,18 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/binario.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.fernandehoyos11.AppSimulador"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "4634c053-f592-4829-9c0a-66750105eae4"
+      }
     }
   }
 }
