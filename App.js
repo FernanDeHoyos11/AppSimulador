@@ -3,9 +3,10 @@ import { useState } from "react";
 import { Ciclica } from "./src/helpers/Ciclica";
 import { InputDx } from "./components/InputDx";
 import { InputGx } from "./components/InputGx";
-import { AppBar, Badge, Button, IconButton, Snackbar, TextInput } from "@react-native-material/core";
+import { AppBar, Badge, Button, FAB , IconButton, Snackbar, TextInput } from "@react-native-material/core";
 import { PolinomioBinario } from "./src/helpers/PolinomioBinario";
 import { Octicons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons'; 
 
 
 export default function App() {
@@ -20,6 +21,8 @@ export default function App() {
   const [isNull, setIsNull] = useState("");
   const [isVerificar, setIsVerificar] = useState(false);
   const [isResult, setIsResult] = useState(false);
+  const [messageCRC, setMessageCRC] = useState("");
+  const [message, setMessage] = useState("");
 
 
   const Dx = PolinomioBinario.convertirAPolinomioBinario(Dividendo)
@@ -39,7 +42,15 @@ export default function App() {
     }
   }
 
-  // Función para mostrar el texto al hacer clic en el botón
+  const handleResetFields = () => {
+    setDividendo('')
+    setDivisor('')
+    setInputCharge(false)
+    setIsVerificar(false)
+    setInputChargeV(false)
+  }
+
+ 
   const mostrarTextoClick = () => {
     if (Dividendo.length > 2 && Divisor.length > 2) {
       setInputCharge(true)
@@ -82,6 +93,7 @@ export default function App() {
     const residuo = ciclica.getResiduo();
     setCrc(residuo)
     setIsVerificar(true)
+    setMessage(`CRC: ${residuo}`)
 
   }
 
@@ -93,6 +105,14 @@ export default function App() {
     const resultadoRecorrer = ciclica.recorrer(0, longitud);
     setResultRecorrerVer(resultadoRecorrer);
     setIsResult(true)
+    const residuo = ciclica.getResiduo();
+    if (/^0+$/.test(residuo)) {
+      setMessageCRC(`${residuo} Recibido con exito`)
+    } else {
+      setMessageCRC(`${residuo} Error`)
+    }
+    
+    
   }
 
   return (
@@ -157,6 +177,7 @@ export default function App() {
             <>
             <Text>Resultados:</Text>
             <Text>{resultado}</Text>
+            <Badge style={{ margin: 10 }} label={message} color="error" />
             </>) : (<></>)}
             
           </>) : (<></>)}
@@ -168,11 +189,20 @@ export default function App() {
           <>
           <Text>Resultados:</Text>
           <Text>{resultRecorrerVer}</Text>
+          <Badge style={{ margin: 10, bottom: 18 }} label={messageCRC} />
           </>) : <></>}
           </>) : (<></>)}
 
         </View>
       </ScrollView>
+
+      <FAB icon={<Ionicons  name="reload-outline" size={24} color="black" />}
+           visible={true}
+           size="mini"
+           style={styles.fab}
+           onPress={handleResetFields}
+            />
+
       <Text
         variant="bottom"
         title="by fernan | Marlon"
@@ -214,7 +244,18 @@ const styles = StyleSheet.create({
     backgroundColor: "#1DD1CB",
     marginTop: 10,
 
-  }
+  },
+  fab: {
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 4,
+    position: 'absolute',
+    bottom: 25,
+    right: 16,
+  },
 
 });
 

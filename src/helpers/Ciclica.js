@@ -14,10 +14,10 @@ export class Ciclica {
   
     imprime() {
       let resultado = "";
-      resultado += "datos " + this.datos + "\n";
-      resultado += "agregado " + this.agregado + "\n";
+      resultado += "datos: " + this.datos + "\n";
+      resultado += "agregado: " + this.agregado + "\n";
       resultado += "               ----------\n";
-      resultado += "binario    " + this.divisor + "|" + this.cadena + "\n";
+      resultado += "binario:    " + this.divisor + "|" + this.cadena + "\n";
       
       return resultado;
     }
@@ -42,42 +42,42 @@ export class Ciclica {
     let resultadoRecorrer = ""; // Variable para almacenar la salida
   
     if (ls == this.cadena.length + 1) {
-      resultadoRecorrer += "cociente total " + this.cociente + "\n";
+      resultadoRecorrer += "cociente total: " + this.cociente + "\n";
       this.staticCrc = this.resulParcial;
       this.residuo = this.resulParcial;
-      resultadoRecorrer += "Residuo  " + this.staticCrc + "\n";
+      resultadoRecorrer += "Residuo:  " + this.staticCrc + "\n";
   
       return resultadoRecorrer;
     }
   
     if (li == 0) {
-      resultadoRecorrer += "parte a dividir " + this.cadena.substring(li, ls) + "\n";
+      resultadoRecorrer += "parte a dividir: " + this.cadena.substring(li, ls) + "\n";
       if (this.resulParcial.startsWith("0")) {
-        resultadoRecorrer += "divisor        " + this.tabulador + "0000\n";
+        resultadoRecorrer += "divisor:        " + this.tabulador + "0000\n";
       } else {
-        resultadoRecorrer += "divisor        " + this.tabulador + "" + this.divisor + "\n";
+        resultadoRecorrer += "divisor:        " + this.tabulador + "" + this.divisor + "\n";
       }
       resultadoRecorrer += "               -------\n";
       this.resulParcial = this.resta(this.cadena.substring(li, ls), this.divisor);
       resultadoRecorrer += "                 " + this.resulParcial + "\n";
-      resultadoRecorrer += "ccite parcial " + this.cociente + "\n";
+      resultadoRecorrer += "ccite parcial: " + this.cociente + "\n";
       resultadoRecorrer += this.recorrer(li + 1, ls + 1); // Llama recursivamente y concatena los resultados
       return resultadoRecorrer;
     }
   
     this.resulParcial += this.cadena.charAt(ls - 1);
-    resultadoRecorrer += "parte a dividir" + this.tabulador + "" + this.resulParcial + "\n";
+    resultadoRecorrer += "parte a dividir: " + this.tabulador + "" + this.resulParcial + "\n";
   
     if (this.resulParcial.startsWith("0")) {
-      resultadoRecorrer += "divisor        " + this.tabulador + "0000\n";
+      resultadoRecorrer += "divisor:        " + this.tabulador + "0000\n";
     } else {
-      resultadoRecorrer += "divisor        " + this.tabulador + "" + this.divisor + "\n";
+      resultadoRecorrer += "divisor:        " + this.tabulador + "" + this.divisor + "\n";
     }
   
     resultadoRecorrer += "              " + this.tabulador + "-------\n";
     this.resulParcial = this.resta(this.resulParcial, this.divisor);
     resultadoRecorrer += "               " + this.tabulador2 + "" + this.resulParcial + "\n";
-    resultadoRecorrer += "ccite parcial " + this.cociente + "\n";
+    resultadoRecorrer += "ccite parcial: " + this.cociente + "\n";
     resultadoRecorrer += this.recorrer(li + 1, ls + 1); // Llama recursivamente y concatena los resultados
     return resultadoRecorrer;
   }
