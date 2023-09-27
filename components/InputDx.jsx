@@ -1,16 +1,22 @@
-import { Text, View } from "react-native";
-import { PolinomioBinario } from "../src/helpers/PolinomioBinario";
+import { TextInput } from "@react-native-material/core";
+import { styles } from "../src/styles";
 
-export const InputDx = ({polynomial}) => {
-  
-    //const polinomio = "x^7+ x^6 + x^5 + x +1 ";
-    const polinomioBinario = PolinomioBinario.convertirAPolinomioBinario(polynomial);
-  
+export const InputDx = ({binariVerificar, BinariDCRCChange}) => {
+
 
   return (
-    <View>
-      <Text>D(x): {polynomial}</Text>
-      <Text>Binario: {polinomioBinario}</Text>
-    </View>
+    <>
+      <TextInput
+            label="Verificar"
+            color="#1DD1CB"
+            editable
+            variant="standard"
+            style={styles.input}
+            onChangeText={BinariDCRCChange}
+            name="crc"
+            value={binariVerificar}
+            keyboardType="numeric"
+          />
+    </>
   );
 };

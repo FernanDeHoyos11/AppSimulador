@@ -16,8 +16,8 @@ export class Ciclica {
       let resultado = "";
       resultado += "datos: " + this.datos + "\n";
       resultado += "agregado: " + this.agregado + "\n";
-      resultado += "               ----------\n";
-      resultado += "binario:    " + this.divisor + "|" + this.cadena + "\n";
+      resultado += "                 ----------\n";
+      resultado += "binario:    " + this.divisor + " | " + this.cadena + "\n";
       
       return resultado;
     }
@@ -55,11 +55,11 @@ export class Ciclica {
       if (this.resulParcial.startsWith("0")) {
         resultadoRecorrer += "divisor:        " + this.tabulador + "0000\n";
       } else {
-        resultadoRecorrer += "divisor:        " + this.tabulador + "" + this.divisor + "\n";
+        resultadoRecorrer += "divisor:              " + this.tabulador + "" + this.divisor + "\n";
       }
-      resultadoRecorrer += "               -------\n";
+      resultadoRecorrer += "                          -------\n";
       this.resulParcial = this.resta(this.cadena.substring(li, ls), this.divisor);
-      resultadoRecorrer += "                 " + this.resulParcial + "\n";
+      resultadoRecorrer += "                             " + this.resulParcial + "\n";
       resultadoRecorrer += "ccite parcial: " + this.cociente + "\n";
       resultadoRecorrer += this.recorrer(li + 1, ls + 1); // Llama recursivamente y concatena los resultados
       return resultadoRecorrer;
@@ -69,14 +69,14 @@ export class Ciclica {
     resultadoRecorrer += "parte a dividir: " + this.tabulador + "" + this.resulParcial + "\n";
   
     if (this.resulParcial.startsWith("0")) {
-      resultadoRecorrer += "divisor:        " + this.tabulador + "0000\n";
+      resultadoRecorrer += "divisor:               " + this.tabulador + "0000\n";
     } else {
-      resultadoRecorrer += "divisor:        " + this.tabulador + "" + this.divisor + "\n";
+      resultadoRecorrer += "divisor:               " + this.tabulador + "" + this.divisor + "\n";
     }
   
-    resultadoRecorrer += "              " + this.tabulador + "-------\n";
+    resultadoRecorrer += "                           " + this.tabulador + "-------\n";
     this.resulParcial = this.resta(this.resulParcial, this.divisor);
-    resultadoRecorrer += "               " + this.tabulador2 + "" + this.resulParcial + "\n";
+    resultadoRecorrer += "                            " + this.tabulador2 + "" + this.resulParcial + "\n";
     resultadoRecorrer += "ccite parcial: " + this.cociente + "\n";
     resultadoRecorrer += this.recorrer(li + 1, ls + 1); // Llama recursivamente y concatena los resultados
     return resultadoRecorrer;
